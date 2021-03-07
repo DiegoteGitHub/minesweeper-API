@@ -1,4 +1,4 @@
-package com.dlalo.minesweeper;
+package com.dlalo.minesweeperapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
