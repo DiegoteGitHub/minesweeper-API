@@ -18,11 +18,8 @@ import lombok.Data;
 public class Game {
 
 	private String id;
-
 	private LocalDateTime created;
-
 	private LocalDateTime updated;
-
 	private String username;
 	private String status;
 	private int moves;
@@ -69,7 +66,7 @@ public class Game {
 
 		openAdjacentCells(cells, theCell);
 
-		if (this.areCellUntouched()) {
+		if (this.areAllNotMineCellsOpened()) {
 			this.status = "YOU WON";
 		}
 	}
@@ -117,7 +114,7 @@ public class Game {
 				.orElseThrow(() -> new RuntimeException("Cell not found for the given coordinates"));
 	}
 
-	private boolean areCellUntouched() {
+	private boolean areAllNotMineCellsOpened() {
 		return this.getCells().stream().filter(cell -> !cell.isMine()).allMatch(Cell::isOpened);
 	}
 }
