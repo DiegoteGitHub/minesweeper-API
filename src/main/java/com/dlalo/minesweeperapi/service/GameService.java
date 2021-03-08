@@ -1,5 +1,6 @@
 package com.dlalo.minesweeperapi.service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -19,6 +20,10 @@ public class GameService {
 	}
 
 	public Game create(final CreateRequest aRequest) {
+		if (BigDecimal.valueOf(aRequest.getRows()).multiply(BigDecimal.valueOf(aRequest.getColumns()))
+				.compareTo(BigDecimal.valueOf(aRequest.getMines())) < 0 || aRequest.getMines() < 0) {
+			throw new RuntimeException("Invalid number of mines");
+		}
 		final Game newGame = Game.builder().status("NEW").username(aRequest.getUsername()).rows(aRequest.getRows())
 				.columns(aRequest.getColumns()).mines(aRequest.getMines()).build();
 		newGame.start();

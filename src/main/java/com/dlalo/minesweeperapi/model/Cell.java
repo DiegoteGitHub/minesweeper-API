@@ -22,7 +22,7 @@ public class Cell {
 		return this != other && x && y;
 	}
 
-	public boolean canBeRecognizedEasy() {
+	public boolean canBeOpened() {
 		return !this.isOpened() && !this.isMine() && !this.isFlagged() && this.getNumOfAdjacentMines() == 0;
 	}
 }

@@ -8,17 +8,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
 @Data
+@Document
 @AllArgsConstructor
 @Builder
 public class Game {
-
-	private String id;
+	
+	@Id
+	private String id;	
+	@CreatedDate
 	private LocalDateTime created;
+	@LastModifiedDate
 	private LocalDateTime updated;
 	private String username;
 	private String status;
@@ -94,7 +103,7 @@ public class Game {
 
 	public void openAdjacentCells(final List<Cell> cells, Cell theCell) {
 		theCell.setOpened(true);
-		List<Cell> adjacentCells = cells.stream().filter(cell -> theCell.isAdjacent(cell) && cell.canBeRecognizedEasy())
+		List<Cell> adjacentCells = cells.stream().filter(cell -> theCell.isAdjacent(cell) && cell.canBeOpened())
 				.collect(Collectors.toList());
 
 		if (adjacentCells.size() > 0) {
