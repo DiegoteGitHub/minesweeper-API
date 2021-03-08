@@ -2,6 +2,8 @@ package com.dlalo.minesweeperapi.service;
 
 import org.springframework.stereotype.Service;
 
+import com.dlalo.minesweeperapi.model.CreateRequest;
+import com.dlalo.minesweeperapi.model.Game;
 import com.dlalo.minesweeperapi.repository.GameRepository;
 
 @Service
