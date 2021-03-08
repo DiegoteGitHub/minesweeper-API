@@ -108,4 +108,16 @@ public class MineSweeperController {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
 		}
 	}
+
+	@PutMapping(value = "/mark", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	@ApiOperation(value = "Mark a cell by game ID given X&Y position", response = Game.class, produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiResponses(value = { @ApiResponse(code = 200, message = "Game updated successfully") })
+	public Game markCell(@RequestBody final EventRequest request) {
+		try {
+			return this.gameService.markCell(request);
+		} catch (final Exception e) {
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage(), e);
+		}
+	}
 }

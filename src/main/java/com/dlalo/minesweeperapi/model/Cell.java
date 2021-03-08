@@ -9,6 +9,7 @@ public class Cell {
 	private boolean opened;
 	private boolean mine;
 	private boolean flagged;
+	private boolean marked;
 	private long numOfAdjacentMines;
 
 	public Cell(final int posX, final int posY) {
@@ -23,6 +24,7 @@ public class Cell {
 	}
 
 	public boolean canBeOpened() {
-		return !this.isOpened() && !this.isMine() && !this.isFlagged() && this.getNumOfAdjacentMines() == 0;
+		return !this.isOpened() && !this.isMine() && !this.isFlagged() && !this.isMarked()
+				&& this.getNumOfAdjacentMines() == 0;
 	}
 }

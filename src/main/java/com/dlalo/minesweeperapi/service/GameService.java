@@ -70,4 +70,16 @@ public class GameService {
 		game.flagCell(request.getPosX(), request.getPosY());
 		return this.gameRepository.save(game);
 	}
+
+	public Game markCell(EventRequest request) {
+		Game game = findGameById(request.getGameId());
+		if (game.isPaused()) {
+			throw new RuntimeException("The Game is paused, can not update it.");
+		}
+		if (game.isGameOver()) {
+			throw new RuntimeException("The Game finished, can not update it.");
+		}
+		game.markCell(request.getPosX(), request.getPosY());
+		return this.gameRepository.save(game);
+	}
 }

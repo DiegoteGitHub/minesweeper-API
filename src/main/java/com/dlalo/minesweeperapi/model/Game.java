@@ -22,9 +22,9 @@ import lombok.Data;
 @AllArgsConstructor
 @Builder
 public class Game {
-	
+
 	@Id
-	private String id;	
+	private String id;
 	@CreatedDate
 	private LocalDateTime created;
 	@LastModifiedDate
@@ -50,10 +50,11 @@ public class Game {
 
 		// Populate board with mines
 		this.getCells().stream().limit(this.getMines()).forEach(cellMine -> cellMine.setMine(true));
-		
+
 		// Re-sort cells by row and then by column
-		Comparator<Cell> comparator = Comparator.comparing(Cell::getPosX).thenComparing(Comparator.comparing(Cell::getPosY));
-	    cells = cells.stream().sorted(comparator).collect(Collectors.toList());
+		Comparator<Cell> comparator = Comparator.comparing(Cell::getPosX)
+				.thenComparing(Comparator.comparing(Cell::getPosY));
+		cells = cells.stream().sorted(comparator).collect(Collectors.toList());
 
 		final Stream<Cell> aStreamOfCells = this.getCells().stream().filter((cell) -> !cell.isMine());
 		aStreamOfCells.forEach((cell) -> cell.setNumOfAdjacentMines(this.getNumOfAdjacentMines(cell)));
@@ -83,6 +84,11 @@ public class Game {
 	public void flagCell(final int posX, final int posY) {
 		final Cell selectedCell = this.findMeTheCellIn(posX, posY);
 		selectedCell.setFlagged(true);
+	}
+
+	public void markCell(final int posX, final int posY) {
+		final Cell selectedCell = this.findMeTheCellIn(posX, posY);
+		selectedCell.setMarked(true);
 	}
 
 	public boolean isGameOver() {
