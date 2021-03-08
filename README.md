@@ -1,6 +1,6 @@
 NOTES:
 
-Heroku ==> minesweeper-dlalo.herokuapp.com/minesweeper/api
+Heroku ==> https://minesweeper-dlalo.herokuapp.com/minesweeper/api
 
 # minesweeper-API
 API test
