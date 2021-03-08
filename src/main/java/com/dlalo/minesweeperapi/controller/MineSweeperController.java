@@ -61,7 +61,7 @@ public class MineSweeperController {
 		}
 	}
 
-	@PutMapping(value = "/recognize", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value = "/opencell", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	public Game recognize(@RequestBody final EventRequest request) {
 		try {
